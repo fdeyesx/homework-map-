@@ -1,0 +1,71 @@
+#include <map>
+#include <iostream>
+using namespace std;
+
+int zero(int a, map <int, int> house) {
+    cout << "Введите номер дома.";
+    int c; cin >> c;
+
+    map <int, int> ::iterator it;
+    it = house.find(c);
+    if (it == house.end()) {
+        cout << "Такого дома нет." << endl;
+    }
+    else {
+        cout << "Да, такой дом есть. В нем проживают " << house[c] << " человек";
+    }
+
+    return 0;
+}
+
+int one(int a, map <int, int> house) {
+    cout << "Введите номер дома.";
+    int c; cin >> c;
+
+    map <int, int> ::iterator it;
+    it = house.find(c);
+    house.erase(it);
+
+    return 0;
+}
+
+int two(map <int, int> house) {
+    cout << "Введите номер дома:";
+    int d; cin >> d;
+    cout << "Введите сколько людей проживают в доме под номером " << d << ":";
+    int g; cin >> g;
+    house.insert(make_pair(d, g));
+
+    return 0;
+}
+
+int main(){
+	setlocale(LC_ALL, "Ru");
+	map <int, int> house;
+	cout << "Введите количество домов:";
+	int a; cin >> a;
+
+	for (int i = 0; i < a; i++) {
+		cout << "Введите сколько людей проживают в доме под номером " << i << ":";
+		int b; cin >> b;
+		house[i] = b; 
+	}
+
+    cout << "Введите номер нужной операции: ";
+    int operation;
+    cin >> operation;
+    switch (operation) {
+    case '0':
+        zero(a, house);
+        break;
+    case '1':
+        one(a, house);
+        break;
+    case '2':
+        two(house);
+        break;
+    }
+
+	system("pause");
+	return 0;
+}
